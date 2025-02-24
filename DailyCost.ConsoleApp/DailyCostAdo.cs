@@ -138,9 +138,9 @@ namespace DailyCost.ConsoleApp
             
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
-            string query = $@"UPDATE [dbo].[Tbl_DailyCost]
-   SET [DeleteFlag] = 1
- WHERE CostID=@CostID";
+                            string query = $@"UPDATE [dbo].[Tbl_DailyCost]
+                   SET [DeleteFlag] = 1
+                 WHERE CostID=@CostID";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("CostID", id);
             int result=cmd.ExecuteNonQuery();

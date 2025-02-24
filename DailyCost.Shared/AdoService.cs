@@ -26,6 +26,20 @@ namespace DailyCost.Shared
             connection.Close();
             return dt;
         }
+        public int Execute(string query,params Parameters[] parameters)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            foreach (Parameters param in parameters)
+            {
+                cmd.Parameters.AddWithValue(param.Name, param.Value);
+            }
+            int result = cmd.ExecuteNonQuery();
+            connection.Close();
+            return result;
+          
+        }
     }
     public class Parameters
     {
