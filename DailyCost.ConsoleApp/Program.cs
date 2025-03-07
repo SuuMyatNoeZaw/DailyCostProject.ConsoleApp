@@ -7,5 +7,8 @@ DailyCostAdo ado= new DailyCostAdo();
 //ado.Delete();
 
 DailyAdoService adoService=new DailyAdoService();
-adoService.Edit(1);
+//adoService.Edit(1);
 //adoService.Read();
+
+DailyCostEFCore daily= new DailyCostEFCore();
+daily.Read();
