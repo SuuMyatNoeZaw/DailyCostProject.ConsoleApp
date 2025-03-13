@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCost.ConsoleApp", "DailyCost.ConsoleApp\DailyCost.ConsoleApp.csproj", "{A5C78969-3591-42EA-B454-058ECC6CB3C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCost.ConsoleApp", "DailyCost.ConsoleApp\DailyCost.ConsoleApp.csproj", "{A5C78969-3591-42EA-B454-058ECC6CB3C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCost.Shared", "DailyCost.Shared\DailyCost.Shared.csproj", "{83489EEC-C6D0-4915-940E-0A49AA5129CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCost.Shared", "DailyCost.Shared\DailyCost.Shared.csproj", "{83489EEC-C6D0-4915-940E-0A49AA5129CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyCost.Database", "DailyCost.Database\DailyCost.Database.csproj", "{66DE2D40-78FB-4F2B-991D-409A80EB8AEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyCost.RestApi", "DailyCost.RestApi\DailyCost.RestApi.csproj", "{3A1FF411-8642-4190-8B14-AD9F451285CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{83489EEC-C6D0-4915-940E-0A49AA5129CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83489EEC-C6D0-4915-940E-0A49AA5129CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83489EEC-C6D0-4915-940E-0A49AA5129CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66DE2D40-78FB-4F2B-991D-409A80EB8AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66DE2D40-78FB-4F2B-991D-409A80EB8AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66DE2D40-78FB-4F2B-991D-409A80EB8AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66DE2D40-78FB-4F2B-991D-409A80EB8AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A1FF411-8642-4190-8B14-AD9F451285CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1FF411-8642-4190-8B14-AD9F451285CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1FF411-8642-4190-8B14-AD9F451285CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1FF411-8642-4190-8B14-AD9F451285CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
