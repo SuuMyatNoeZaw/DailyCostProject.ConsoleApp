@@ -12,6 +12,8 @@ namespace DailyCost.RestApi.Controllers
     public class AdoController : ControllerBase
     {
         private readonly string connectionString = "Data Source=WINDOWS-1ISKG05\\SQLEXPRESS;Initial Catalog=F9DB;Trusted_Connection=True;TrustServerCertificate=True;";
+        private int result;private Decimal totalprice;
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -97,7 +99,7 @@ namespace DailyCost.RestApi.Controllers
             cmd.Parameters.AddWithValue("@TotalPrice", totalprice);
             int result = cmd.ExecuteNonQuery();
 
-            return Ok(result);
+            return Ok(result == 1 ? "Your Task is succeed." : "Your Task is Failed.");
         }
         [HttpPut("{id}")]
         public IActionResult Update(int id, ViewModel cost)
@@ -124,7 +126,76 @@ namespace DailyCost.RestApi.Controllers
             cmd.Parameters.AddWithValue("@TotalPrice", totalprice);
             int result = cmd.ExecuteNonQuery();
 
-            return Ok(result);
+            return Ok(result == 1 ? "Your Task is succeed." : "Your Task is Failed.");
+        }
+        [HttpPatch("{id}")]
+        public IActionResult PatchEx(int id, ViewModel cost)
+        {
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            string conditions = "";
+            if (!string.IsNullOrEmpty(cost.Thing))
+            {
+                conditions += "[Thing] = @Thing, ";
+            }
+            if (cost.Qty != 0)
+            {
+                conditions += "[Qty] = @Qty, ";
+            }
+            if (cost.Price != 0)
+            {
+                conditions += "[Price] = @Price, ";
+            }
+            if (cost.Qty != 0 && cost.Price != 0)
+            {
+                conditions += "[TotalPrice] = @TotalPrice, ";
+            }
+            if (conditions.Length == 0)
+            {
+                return BadRequest("Something Wrong.");
+             
+            }
+            else
+            {
+
+                DateTime date = DateTime.Now;
+                
+
+                conditions = conditions.Substring(0, conditions.Length - 2);
+                string query = $@"UPDATE [dbo].[Tbl_DailyCost]
+   SET [Date] = @Date
+      ,{conditions}
+      ,[DeleteFlag] = 0
+ WHERE CostID=@CostId";
+                SqlCommand cmd = new SqlCommand(query, connection);
+
+                cmd.Parameters.AddWithValue("@CostId", id);
+                cmd.Parameters.AddWithValue("@Date", date);
+                if (!string.IsNullOrEmpty(cost.Thing))
+                {
+                    cmd.Parameters.AddWithValue("@Thing", cost.Thing);
+                }
+                if (cost.Qty != 0)
+                {
+                    cmd.Parameters.AddWithValue("@Qty", cost.Qty);
+                }
+                if (cost.Price != 0)
+                {
+                   
+                    cmd.Parameters.AddWithValue("@Price", cost.Price);
+                }
+                if(cost.Qty != 0 && cost.Price != 0)
+                {
+                    totalprice = cost.Price * cost.Qty;
+                    cmd.Parameters.AddWithValue("@TotalPrice", totalprice);
+                }
+                
+                result = cmd.ExecuteNonQuery();
+            }
+           
+
+            return Ok(result == 1 ? "Your Task is succeed." : "Your Task is Failed.");
         }
         [HttpDelete("{id}")]
        
@@ -143,7 +214,7 @@ namespace DailyCost.RestApi.Controllers
             cmd.Parameters.AddWithValue("@Date", date);
             int result = cmd.ExecuteNonQuery();
 
-            return Ok(result);
+            return Ok(result==1?"Your Task is succeed.":"Your Task is Failed.");
         }
        
 
